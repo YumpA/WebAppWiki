@@ -1,0 +1,17 @@
+﻿@model WebAppWiki.Models.GameSimpleModel
+
+<tr>
+    <td>
+        <a asp-route-id="@Model.Id"
+           asp-action="Details">
+            @Model.Title
+        </a>
+    </td>
+    <td>
+        <a asp-route-id="@Model.Id"
+           asp-controller="Admin"
+           asp-action="GameEditView">
+            Изменить
+        </a>
+    </td>
+</tr>

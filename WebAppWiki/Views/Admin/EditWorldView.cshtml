@@ -1,0 +1,90 @@
+﻿@model WebAppWiki.Models.WorldEditModel
+
+@{
+    ViewData["Title"] = Model.WorldId == 0 ? "Добавить мир" : "Редактировать мир";
+}
+
+<h1>@ViewData["Title"]</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="EditWorldView">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="WorldId" class="control-label"></label>
+                <input readonly asp-for="WorldId" class="form-control" />
+                <span asp-validation-for="WorldId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label>Выберите игру</label>
+                <select name="SelectedGameId" class="form-select">
+                    @foreach (var item in Model.ListOfGames)
+                    {
+                        if (item.Selected)
+                        {
+                            <option value="@item.Value" selected>@item.Text</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <img id="ShowImage"
+                         width="400"
+                         src="~/@Model.ImgSrc" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImgUrl" class="control-label"></label>
+                    <input readonly asp-for="ImgUrl" class="form-control" />
+                </div>
+                <input type="file"
+                       data-val="false"
+                       asp-for="FileImage"
+                       accept="image/*" />
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Добавить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="form-group mb-3 mt-2">
+    <a asp-action="WorldList" class="btn btn-secondary">Назад</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $('#FileImage').change(function () {
+            LoadImage(this);
+        });
+
+        function LoadImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#ShowImage').attr('src', e.target.result)
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

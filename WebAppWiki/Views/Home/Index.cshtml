@@ -1,0 +1,19 @@
+﻿@model WebAppWiki.Models.Filters.FilterMainModel
+
+@{
+    ViewData["Title"] = "Главная страница";
+}
+<section class="wiki-hero py-4 py-md-5">
+    <div class="container-xxl">
+        <h1 class="display-5 fw-800 neon-title">@ViewData["Title"]</h1>
+        <p class="lead text-secondary-500">Добро пожаловать на Вики!</p>
+    </div>
+    <div class="container-xxl">
+        <form asp-controller="Filters" asp-action="ApplyFilterGameName" method="post" class="wiki-search mt-3">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control wiki-search-input" value="@Model.FilterGame.GameName" id="FilterGame_GameName" name="FilterGame.GameName" placeholder="Найти игру..." aria-describedby="button-addon2">
+                <button class="btn btn-outline-warning" type="submit" id="button-addon2">Искать</button>
+            </div>
+        </form>
+    </div>
+</section>

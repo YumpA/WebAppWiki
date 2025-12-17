@@ -1,0 +1,42 @@
+﻿@{
+	ViewData["Title"] = "Админ-панель";
+}
+
+<div class="container">
+	<h1>Админ-панель</h1>
+
+	<div class="row mt-4">
+		<div class="col-md-4">
+			<div class="card bg-dark">
+				<div class="card-body">
+					<h5 class="card-title">Управление играми</h5>
+					<p class="card-text">Добавление, редактирование и удаление игр</p>
+					<a asp-action="GamesList" class="btn btn-outline-warning">Перейти к играм</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card bg-dark">
+				<div class="card-body">
+					<h5 class="card-title">Управление ролями</h5>
+					<p class="card-text">Настройка прав доступа и ролей пользователей</p>
+					<a asp-action="ManageRolesView" class="btn btn-outline-warning">Управление ролями</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="card bg-dark">
+				<div class="card-body">
+					<h5 class="card-title">Управление контентом</h5>
+					<p class="card-text">Настройка жанров, рейтингов и других параметров</p>
+					<a asp-action="ManageContentView" class="btn btn-outline-warning">Управление контентом</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group mb-2 mt-1">
+		<a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">На главную</a>
+	</div>
+</div>

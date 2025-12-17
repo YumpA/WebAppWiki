@@ -1,0 +1,15 @@
+﻿@{
+	ViewData["Title"] = "Управление контетом";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="col-9">
+	<a class="btn btn-outline-warning" asp-action="GenreList">Управление жанрами</a>
+	<a class="btn btn-outline-warning" asp-action="FractionsList">Управление фракциями</a>
+	<a class="btn btn-outline-warning" asp-action="WorldList">Управление мирами</a>
+	<a class="btn btn-outline-warning" asp-action="CharachtersList">Управление персонажами</a>
+</div>
+<div class="form-group mb-3 mt-2">
+	<a asp-action="Index" class="btn btn-outline-secondary">Назад</a>
+</div>

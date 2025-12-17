@@ -1,0 +1,42 @@
+@model IEnumerable<WebAppWiki.Domains.Game>
+
+@{
+    ViewData["Title"] = "Игры";
+}
+
+<h1 class="section-title">Игры</h1>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-controller="Admin" asp-action="CreateGameView" class="btn btn-primary">Создать новую игру</a>
+    }
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card wiki-card h-100">
+                <img src="@(string.IsNullOrEmpty(item.Imageurl) ? "/images/none.jpg" : item.Imageurl)" class="card-img-top wiki-card-img" alt="@item.Title">
+                <div class="card-body">
+                    <h5 class="card-title fw-600">@item.Title</h5>
+                    <p class="card-text text-secondary-400">@item.Description</p>
+                    <div class="d-flex justify-content-between">
+                        <a asp-controller="Admin" asp-action="GameEditView" asp-route-id="@item.GameId" class="btn btn-neon">Подробнее</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <div>
+                                <a asp-controller="Admin" asp-action="GameEditView" asp-route-id="@item.GameId" class="btn btn-outline-neon">Редактировать</a>
+                                <form asp-controller="Admin" asp-action="DeleteGame" asp-route-id="@item.GameId" method="post" style="display: inline;">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-danger btn-soft" onclick="return confirm('Вы уверены?')">Удалить</button>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div> 

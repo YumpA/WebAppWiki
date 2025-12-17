@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebAppWiki.Domains.Game>
+
+@{
+    ViewData["Title"] = "Поиск";
+}
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model)
+                {
+                    <tr>
+                        <td>@game.GameId</td>
+                        <td>@game.Title</td>
+                        <td>
+                            <div class="btn-group">
+                                <a asp-action="Details" asp-route-id="@game.GameId" class="btn btn-sm btn-info">Просмотр</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div> 
